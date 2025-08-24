@@ -6,7 +6,7 @@ build-server:
 
 build-ui:
 	@echo "Building UI..."
-	@cd ui && pnpm install --frozen-lockfile && pnpm run build
+	@cd ui && npm install && npm run build
 
 # Build the entire application
 build: build-ui build-server

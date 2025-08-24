@@ -22,7 +22,9 @@ func main() {
 	mux.HandleFunc("/api/users/{id}", handleUserByID)
 	mux.HandleFunc("/health", handleHealth)
 
-	if common.IsProduction() {
+	isProd := common.IsProduction()
+
+	if isProd {
 		hfs := http.FileServer(http.FS(ui.DistDirFS))
 		// Serve static assets from the ui/dist directory
 		mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -59,7 +61,7 @@ func main() {
 	fmt.Printf("🚀 Server starting on port %s\n", port)
 	fmt.Println("📡 API endpoints: /api/*")
 	fmt.Println("💚 Health check: /health")
-	if common.IsProduction() {
+	if isProd {
 		fmt.Println("🌐 Serving static files from ui/dist directory")
 	} else {
 		fmt.Println("🔄 Proxying to Vite dev server at http://localhost:5173")

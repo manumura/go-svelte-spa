@@ -8,6 +8,8 @@ import (
 	"net/url"
 	"os"
 	"strings"
+
+	"github.com/joho/godotenv"
 )
 
 type User struct {
@@ -51,5 +53,12 @@ func IsViteServerRunning() bool {
 }
 
 func IsProduction() bool {
-	return strings.Contains(strings.ToLower(os.Getenv("GO_ENV")), "prod")
+	err := godotenv.Load()
+	if err != nil {
+		log.Printf("Error loading .env file: %v", err)
+	}
+
+	isProduction := strings.Contains(strings.ToLower(os.Getenv("GO_ENV")), "prod")
+	log.Printf("Environment GO_ENV=%s, isProduction=%v\n", os.Getenv("GO_ENV"), isProduction)
+	return isProduction
 }
