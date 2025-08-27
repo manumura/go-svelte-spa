@@ -34,7 +34,9 @@ func main() {
 	api.GET("/users", handleUsers)
 	api.GET("/users/:id", handleUserByID)
 
-	if common.IsProduction() {
+	isProd := common.IsProduction()
+
+	if isProd {
 		e.Use(middleware.StaticWithConfig(middleware.StaticConfig{
 			HTML5:      true,
 			Root:       "dist",
@@ -42,7 +44,7 @@ func main() {
 		}))
 	} else {
 		if !common.IsViteServerRunning() {
-			log.Fatalln("Vite dev server is not running. Please start it with 'pnpm dev'")
+			log.Fatalln("Vite dev server is not running. Please start it with 'pnpm dev' or 'npm run dev'")
 		}
 		// Static assets and frontend routes
 		e.Any("/*", staticAssetHandler)
@@ -50,7 +52,7 @@ func main() {
 
 	fmt.Println("📡 API endpoints: /api/*")
 	fmt.Println("💚 Health check: /health")
-	if common.IsProduction() {
+	if isProd {
 		fmt.Println("🌐 Serving static files from ui/dist directory")
 	} else {
 		fmt.Println("🔄 Proxying to Vite dev server at http://localhost:5173")

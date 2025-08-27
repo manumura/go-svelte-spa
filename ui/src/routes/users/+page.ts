@@ -1,8 +1,10 @@
 import type { User } from '$lib/types';
+import appConfig from '../../lib/config';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ fetch }): Promise<{ users: User[] }> => {
-  const response = await fetch(`/api/users`);
+  const url = `${appConfig.baseUrl}/api/users`;
+  const response = await fetch(url);
 
   if (!response.ok) {
     return { users: [] };

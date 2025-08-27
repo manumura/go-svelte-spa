@@ -1,3 +1,4 @@
+import appConfig from '../../../lib/config';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ fetch, params }) => {
@@ -7,7 +8,8 @@ export const load: PageLoad = async ({ fetch, params }) => {
     return { user: null };
   }
 
-  const response = await fetch(`/api/users/${id}`);
+  const url = `${appConfig.baseUrl}/api/users/${id}`;
+  const response = await fetch(url);
 
   if (!response.ok) {
     return { user: null };

@@ -41,7 +41,7 @@ func main() {
 	} else {
 		// Check if Vite dev server is running
 		if !common.IsViteServerRunning() {
-			log.Fatalln("Vite dev server is not running. Please start it with 'pnpm dev' from the ui/ directory")
+			log.Fatalln("Vite dev server is not running. Please start it with 'pnpm dev' or 'npm run dev' from the ui/ directory")
 			return
 		}
 
