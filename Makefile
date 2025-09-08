@@ -2,7 +2,7 @@ all: build test
 
 build-server:
 	@echo "Building Server..."
-	@go build -o main examples/echo/main.go
+	@go build -o main server/main.go
 
 build-ui:
 	@echo "Building UI..."
@@ -13,7 +13,7 @@ build: build-ui build-server
 
 # Run the application
 run:
-	@go run examples/echo/main.go
+	@go run server/main.go
 
 # Test the application
 test:

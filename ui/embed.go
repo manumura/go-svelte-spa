@@ -5,6 +5,8 @@ import (
 	"io/fs"
 )
 
+var IndexFilePath = "ui/dist/index.html"
+
 //go:embed all:dist
 var DistDir embed.FS
 

@@ -36,7 +36,7 @@ The application will be accessible at http://localhost:8080
 
 ## Development
 
-The following commands use the `examples/stdlib/main.go` file for the backend.
+The following commands use the `server/stdlib/main.go` file for the backend.
 
 Run build make command with tests
 
